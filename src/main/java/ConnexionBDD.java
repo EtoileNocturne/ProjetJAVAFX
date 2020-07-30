@@ -1,3 +1,4 @@
+import javax.xml.transform.Result;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
@@ -30,19 +31,20 @@ public class ConnexionBDD {
     }
 
     public void ajouterUtilisateur(Utilisateur uti){
-        String query = "INSERT INTO utilisateur (nom,prenom,telephone," +
-                "adresse,ville,email,mdp,estAdmin) VALUES (?,?,?,?,?,?,?,?);";
+        String query = "INSERT INTO utilisateur (nom,prenom,dateNaissance,telephone," +
+                "adresse,ville,email,mdp,estAdmin) VALUES (?,?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement ps = maConnexion.prepareStatement(query);
 
             ps.setString(1,uti.getNom());
             ps.setString(2,uti.getPrenom());
-            ps.setString(3,uti.getTelephone());
-            ps.setString(4,uti.getAdresse());
-            ps.setString(5,uti.getVille());
-            ps.setString(6,uti.getEmail());
-            ps.setString(7,uti.chiffrerMDP(uti.getMdp()));
-            ps.setBoolean(8,uti.isEstAdmin());
+            ps.setString(3,uti.getDateNaissance());
+            ps.setString(4,uti.getTelephone());
+            ps.setString(5,uti.getAdresse());
+            ps.setString(6,uti.getVille());
+            ps.setString(7,uti.getEmail());
+            ps.setString(8,uti.chiffrerMDP(uti.getMdp()));
+            ps.setBoolean(9,uti.isEstAdmin());
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -67,24 +69,34 @@ public class ConnexionBDD {
 
     }
 
-    public String rechercherUtilisateur (String email){
-        String query = "Select id, mdp from utilisateur where email = ?";
+    public Utilisateur rechercherUtilisateur (String email){
+        String query = "Select * from utilisateur where email = ?";
 
         try {
             PreparedStatement ps = maConnexion.prepareStatement(query);
 
             ps.setString(1,email);
 
+
             ResultSet rs = ps.executeQuery();
 
-            while(rs.next()){
-                return rs.getString("mdp");
+            while (rs.next()){
+                Utilisateur uti = new Utilisateur(rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getString("dateNaissance"),
+                        rs.getString("telephone"),
+                        rs.getString("Adresse"),
+                        rs.getString("ville"),
+                        rs.getString("email"),
+                        rs.getString("mdp"),
+                        rs.getBoolean("estAdmin"));
+                return uti;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 
     public void modifierMdp (String email,String NewMdp){

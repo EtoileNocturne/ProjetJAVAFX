@@ -6,6 +6,7 @@ public class Utilisateur {
 
     private String nom;
     private String prenom;
+    private String dateNaissance;
     private String telephone;
     private String adresse;
     private String ville;
@@ -13,15 +14,20 @@ public class Utilisateur {
     private String mdp;
     private boolean estAdmin;
 
-    public Utilisateur(String nom, String prenom, String telephone, String adresse, String ville, String email, String mdp, boolean estAdmin) {
+    public Utilisateur(String nom, String prenom, String dateNaissance, String telephone, String adresse, String ville, String email, String mdp, boolean estAdmin) {
         this.nom = nom;
         this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
         this.telephone = telephone;
         this.adresse = adresse;
         this.ville = ville;
         this.email = email;
         this.mdp = mdp;
         this.estAdmin = estAdmin;
+    }
+
+    public String getDateNaissance() {
+        return dateNaissance;
     }
 
     public String chiffrerMDP(String mdp){
@@ -86,5 +92,12 @@ public class Utilisateur {
 
     public boolean isEstAdmin() {
         return estAdmin;
+    }
+
+    public String toString(){
+        System.out.println(getPrenom() + " " + getNom() + " " +
+                getDateNaissance() + " " + getEmail() + " " +
+                getVille() + " " + getTelephone());
+        return "";
     }
 }
