@@ -51,7 +51,7 @@ public class ConnexionBDD {
     }
 
     public String rechercherUtilisateur (String email){
-        String query = "Select mdp from utilisateur where email = ?";
+        String query = "Select id, mdp from utilisateur where email = ?";
 
         try {
             PreparedStatement ps = maConnexion.prepareStatement(query);
