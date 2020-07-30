@@ -1,5 +1,4 @@
 import com.google.common.hash.Hashing;
-import com.google.common.hash.HashingOutputStream;
 
 import java.nio.charset.StandardCharsets;
 

@@ -93,4 +93,20 @@ public class ConnexionBDD {
             e.printStackTrace();
         }
     }
+    
+    //CRUD classe
+    
+    public void ajouterClasse(Classe classe){
+        String query = "INSERT INTO classe (nom,capacite) VALUES (?,?);";
+        try {
+            PreparedStatement ps = maConnexion.prepareStatement(query);
+
+            ps.setString(1,classe.getNom());
+            ps.setInt(2,classe.getCapacite());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
