@@ -1,12 +1,17 @@
 
 public class Classe {
 
-	 private String nom;
-	 private Integer capacite;
+	private int id;
+	private String nom;
+	private int capacite;
 	 
 	public Classe(String nom, Integer capacite) {
 		this.nom = nom;
 		this.capacite = capacite;
+	}
+
+	public Integer getId() {
+		return id;
 	}
 
 	public String getNom() {

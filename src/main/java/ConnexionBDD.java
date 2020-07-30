@@ -50,6 +50,23 @@ public class ConnexionBDD {
         }
     }
 
+    public ResultSet afficherUtilisateurs(){
+        String query = "Select id, nom, prenom, email from UTILISATEUR";
+
+        try {
+            PreparedStatement ps = maConnexion.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+
+            return rs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
     public String rechercherUtilisateur (String email){
         String query = "Select id, mdp from utilisateur where email = ?";
 
@@ -93,4 +110,50 @@ public class ConnexionBDD {
             e.printStackTrace();
         }
     }
+    
+    //CRUD classe
+    
+    public void ajouterClasse(Classe classe){
+        String query = "INSERT INTO classe (nom,capacite) VALUES (?,?);";
+        try {
+            PreparedStatement ps = maConnexion.prepareStatement(query);
+
+            ps.setString(1,classe.getNom());
+            ps.setInt(2,classe.getCapacite());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void modifierClasse(Classe classe){
+        String query = "UPDATE classe SET nom = ?, capacite = ? where id = ? ";
+        try {
+            PreparedStatement ps = maConnexion.prepareStatement(query);
+
+            ps.setString(1,classe.getNom());
+            ps.setInt(2,classe.getCapacite());
+            ps.setInt(3,classe.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void supprimerClasse(Classe classe){
+        String query = "DELETE classe where id = ? ";
+        try {
+            PreparedStatement ps = maConnexion.prepareStatement(query);
+            
+            ps.setInt(1,classe.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
