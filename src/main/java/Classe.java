@@ -1,13 +1,19 @@
 
 public class Classe {
 
+	 private Integer id;
 	 private String nom;
 	 private Integer capacite;
 	 
-	public Classe(String nom, Integer capacite) {
+	public Classe(Integer id, String nom, Integer capacite) {
 		super();
+		this.id = id;
 		this.nom = nom;
 		this.capacite = capacite;
+	}
+
+	public Integer getId() {
+		return id;
 	}
 
 	public String getNom() {

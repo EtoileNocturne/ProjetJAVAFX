@@ -109,4 +109,32 @@ public class ConnexionBDD {
             e.printStackTrace();
         }
     }
+    
+    public void modifierClasse(Classe classe){
+        String query = "UPDATE classe SET nom = ?, capacite = ? where id = ? ";
+        try {
+            PreparedStatement ps = maConnexion.prepareStatement(query);
+
+            ps.setString(1,classe.getNom());
+            ps.setInt(2,classe.getCapacite());
+            ps.setInt(3,classe.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void supprimerClasse(Classe classe){
+        String query = "DELETE classe where id = ? ";
+        try {
+            PreparedStatement ps = maConnexion.prepareStatement(query);
+            
+            ps.setInt(1,classe.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
