@@ -55,7 +55,7 @@ public class AccueilAffichage extends Application {
        root.add(loginButton, 1, 3);
  
        Scene scene = new Scene(root, 300, 300);
-       primaryStage.setTitle("Gestionnaire d'école");
+       primaryStage.setTitle("Gestionnaire d'école - Connexion");
        primaryStage.setScene(scene);
        primaryStage.show();
    }
