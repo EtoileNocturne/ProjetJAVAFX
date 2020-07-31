@@ -1,4 +1,11 @@
+import javafx.event.EventHandler;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -21,7 +28,6 @@ public class AccueilAffichage extends Application {
  
        Label labelTitle = new Label("Connexion");
  
-       // Put on cell (0,0), span 2 column, 1 row.
        root.add(labelTitle, 1, 0, 1, 1);
  
        Label labelUserName = new Label("Email");
@@ -32,29 +38,43 @@ public class AccueilAffichage extends Application {
        PasswordField fieldPassword = new PasswordField();
  
        Button loginButton = new Button("Connexion");
+       loginButton.setOnAction(new EventHandler<ActionEvent>() {
+
+           @Override
+           public void handle(ActionEvent event) {
+              try {
+				ConnexionBDD connexion = new ConnexionBDD();
+				connexion.seConnecter();
+				Utilisateur uti = connexion.rechercherUtilisateur("antoine.houlbert@gmail.com");
+				System.out.println(uti.getNom());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+           }
+       });
  
        GridPane.setHalignment(labelUserName, HPos.RIGHT);
  
-       // Put on cell (0,1)
        root.add(labelUserName, 0, 1);
  
         
        GridPane.setHalignment(labelPassword, HPos.RIGHT);
        root.add(labelPassword, 0, 2);
  
-       // Horizontal alignment for User Name field.
        GridPane.setHalignment(fieldUserName, HPos.LEFT);
        root.add(fieldUserName, 1, 1);
  
-       // Horizontal alignment for Password field.
        GridPane.setHalignment(fieldPassword, HPos.LEFT);
        root.add(fieldPassword, 1, 2);
  
-       // Horizontal alignment for Login button.
        GridPane.setHalignment(loginButton, HPos.RIGHT);
        root.add(loginButton, 1, 3);
  
-       Scene scene = new Scene(root, 300, 300);
+       Scene scene = new Scene(root, 600, 600);
        primaryStage.setTitle("Gestionnaire d'école - Connexion");
        primaryStage.setScene(scene);
        primaryStage.show();

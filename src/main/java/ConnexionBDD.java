@@ -12,8 +12,8 @@ public class ConnexionBDD {
     private String cheminFichierProperties;
     private PreparedStatement ps;
 
-    public ConnexionBDD(String cheminFichierProperties) throws IOException, SQLException {
-        this.cheminFichierProperties = cheminFichierProperties;
+    public ConnexionBDD() throws IOException, SQLException {
+        this.cheminFichierProperties = System.getProperty("user.dir")+"\\src\\SQL\\db.properties";
     }
 
     public void seConnecter() throws SQLException, IOException {
