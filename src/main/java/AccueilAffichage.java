@@ -55,7 +55,7 @@ public class AccueilAffichage extends Application {
 					
 					a.setContentText("L'utilisateur est bien connecté");
 				}else {
-					a.setContentText("L'utilisateur n'est pas connecté\n"+uti.getMdp()+"\n"+uti.chiffrerMDP(fieldPassword.getText())+"\n"+uti.getMdp().length()+"\n"+uti.chiffrerMDP(fieldPassword.getText()).length());
+					a.setContentText("L'utilisateur n'est pas connecté. Vérifier le mot de passe ou l'eamil de l'utilisateur");
 				}
 				a.showAndWait();
 			}
