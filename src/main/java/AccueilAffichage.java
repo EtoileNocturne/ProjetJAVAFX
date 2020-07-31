@@ -1,6 +1,5 @@
 import javafx.event.EventHandler;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -9,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -31,21 +32,33 @@ public class AccueilAffichage extends Application {
        root.add(labelTitle, 1, 0, 1, 1);
  
        Label labelUserName = new Label("Email");
-       TextField fieldUserName = new TextField();
+       final TextField fieldUserName = new TextField();
  
        Label labelPassword = new Label("Mot de passe");
  
-       PasswordField fieldPassword = new PasswordField();
+       final PasswordField fieldPassword = new PasswordField();
  
        Button loginButton = new Button("Connexion");
-       loginButton.setOnAction(new EventHandler<ActionEvent>() {
+       
+       EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
 
            @Override
            public void handle(ActionEvent event) {
               try {
 				ConnexionBDD connexion = new ConnexionBDD();
 				connexion.seConnecter();
-				Utilisateur uti = connexion.rechercherUtilisateur("antoine.houlbert@gmail.com");
+				String userName = String.valueOf(fieldUserName.getText());
+				Utilisateur uti = connexion.rechercherUtilisateur(userName);
+			if(uti != null) {
+				Alert a  = new Alert(AlertType.INFORMATION);
+				if(uti.getMdp().replaceAll(" ","").compareTo(uti.chiffrerMDP(fieldPassword.getText())) == 0) {
+					
+					a.setContentText("L'utilisateur est bien connecté");
+				}else {
+					a.setContentText("L'utilisateur n'est pas connecté\n"+uti.getMdp()+"\n"+uti.chiffrerMDP(fieldPassword.getText())+"\n"+uti.getMdp().length()+"\n"+uti.chiffrerMDP(fieldPassword.getText()).length());
+				}
+				a.showAndWait();
+			}
 				System.out.println(uti.getNom());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -55,8 +68,11 @@ public class AccueilAffichage extends Application {
 				e.printStackTrace();
 			}
            }
-       });
- 
+       };
+       
+       loginButton.setOnAction(event);
+
+          
        GridPane.setHalignment(labelUserName, HPos.RIGHT);
  
        root.add(labelUserName, 0, 1);
