@@ -12,7 +12,7 @@ public class Test {
 
         Utilisateur uti = new Utilisateur("yildiz","tarik", "1997-11-18","0778213572","11 imp louis cretois","le mans","tarik_yildiz45@hotmail.fr","testestest",true);
 
-        ConnexionBDD conn = new ConnexionBDD("C:\\Users\\tarik\\Documents\\CESI\\CesiProjet\\src\\SQL\\db.properties");
+        ConnexionBDD conn = new ConnexionBDD();
 
         conn.seConnecter();
 

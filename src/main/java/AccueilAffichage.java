@@ -3,17 +3,17 @@ import javafx.event.EventHandler;
 import java.io.IOException;
 import java.sql.SQLException;
 
+
+
+import java.util.*;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
  
@@ -22,7 +22,7 @@ public class AccueilAffichage extends Application {
    @Override
    public void start(Stage primaryStage) throws Exception {
        GridPane root = new GridPane();
- 
+
        root.setPadding(new Insets(20));
        root.setHgap(25);
        root.setVgap(15);
@@ -57,9 +57,9 @@ public class AccueilAffichage extends Application {
 				}else {
 					a.setContentText("L'utilisateur n'est pas connecté. Vérifier le mot de passe ou l'eamil de l'utilisateur");
 				}
-				a.showAndWait();
-			}
-				System.out.println(uti.getNom());
+                a.showAndWait();
+                System.out.println(uti.getNom());
+            }
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
