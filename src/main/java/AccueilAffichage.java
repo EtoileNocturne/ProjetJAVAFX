@@ -7,13 +7,18 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
  
@@ -21,7 +26,7 @@ public class AccueilAffichage extends Application {
  
    @Override
    public void start(Stage primaryStage) throws Exception {
-       GridPane root = new GridPane();
+       final GridPane root = new GridPane();
  
        root.setPadding(new Insets(20));
        root.setHgap(25);
@@ -39,7 +44,6 @@ public class AccueilAffichage extends Application {
        final PasswordField fieldPassword = new PasswordField();
  
        Button loginButton = new Button("Connexion");
-       
        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
 
            @Override
@@ -52,14 +56,18 @@ public class AccueilAffichage extends Application {
 			if(uti != null) {
 				Alert a  = new Alert(AlertType.INFORMATION);
 				if(uti.getMdp().replaceAll(" ","").compareTo(uti.chiffrerMDP(fieldPassword.getText())) == 0) {
-					
-					a.setContentText("L'utilisateur est bien connecté");
+					//Si l'utilisateur arrive à se connecter
+					// Mettre un lien vers le nouveau layout
+					MenuBar menuBar = new MenuBar();
+					accueil(menuBar);
+					GridPane.setValignment(menuBar, VPos.TOP);
+				       root.add(menuBar,0,0);
 				}else {
-					a.setContentText("L'utilisateur n'est pas connecté. Vérifier le mot de passe ou l'eamil de l'utilisateur");
+					a.setContentText("L'utilisateur n'est pas connecté. Vérifiez le mot de passe ou l'email de l'utilisateur.");
+					a.showAndWait();
 				}
-				a.showAndWait();
+			
 			}
-				System.out.println(uti.getNom());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -89,6 +97,8 @@ public class AccueilAffichage extends Application {
  
        GridPane.setHalignment(loginButton, HPos.RIGHT);
        root.add(loginButton, 1, 3);
+       
+       
  
        Scene scene = new Scene(root, 600, 600);
        primaryStage.setTitle("Gestionnaire d'école - Connexion");
@@ -98,6 +108,34 @@ public class AccueilAffichage extends Application {
  
    public static void main(String[] args) {
        launch(args);
+   }
+   
+   public static void accueil(MenuBar menuBar)
+   {
+       
+       
+       // Create menus
+       Menu eleveMenu = new Menu("Elève");
+       Menu classeMenu = new Menu("Classe");
+       
+       // Create MenuItems
+       MenuItem nouvelEleve = new MenuItem("Nouvel élève");
+       MenuItem updateEleve = new MenuItem("Modifier élève");
+       MenuItem supprimerEleve = new MenuItem("Supprimer élève");
+       
+       MenuItem nouvelleClasse = new MenuItem("Nouvelle classe");
+       MenuItem updateClasse = new MenuItem("Modifier classe");
+       MenuItem supprimerClasse = new MenuItem("Supprimer classe");
+       
+       // Add menuItems to the Menus
+       eleveMenu.getItems().addAll(nouvelEleve, updateEleve, supprimerEleve);
+       classeMenu.getItems().addAll(nouvelleClasse, updateClasse, supprimerClasse);
+       
+       // Add Menus to the MenuBar
+       menuBar.getMenus().addAll(eleveMenu, classeMenu);
+       
+       BorderPane accueilBorderPane = new BorderPane();
+       accueilBorderPane.setTop(menuBar);
    }
  
 }
