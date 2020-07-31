@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64a100c4-3ed4-405e-976b-23f0f407a21f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQL/db.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ConnexionBDD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ConnexionBDD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utilisateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utilisateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Eleve.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Eleve.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +53,14 @@
       <recent name="C:\Users\tarik\Documents\CESI\CesiProjet\src\SQL" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.AccueilAffichage">
+    <configuration name="AccueilAffichage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AccueilAffichage" />
+      <module name="CesiProjet" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="CesiProjet" />
@@ -64,6 +70,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AccueilAffichage" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
@@ -79,7 +86,8 @@
       <option name="presentableId" value="Default" />
       <updated>1596103476950</updated>
       <workItem from="1596103478700" duration="1100000" />
-      <workItem from="1596105913508" duration="10891000" />
+      <workItem from="1596105913508" duration="11939000" />
+      <workItem from="1596183015552" duration="3893000" />
     </task>
     <servers />
   </component>
@@ -111,14 +119,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="213" y="19" key="Maven.ArtifactSearchDialog/0.0.1366.728@0.0.1366.728" timestamp="1596107439060" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1596183042020">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1596183042020" />
     <state x="492" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596114287898">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="492" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1596114287898" />
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1596112347607">
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1596118765813">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1596112347607" />
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1596118765813" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1596111375317">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

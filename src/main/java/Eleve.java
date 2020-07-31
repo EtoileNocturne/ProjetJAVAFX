@@ -1,10 +1,11 @@
-public class Eleve {
+public class Eleve extends Utilisateur{
 
     private String formation;
     private int idClasse;
     private int idUtilisateur;
 
-    public Eleve(String formation) {
+    public Eleve(String nom, String prenom, String dateNaissance, String telephone, String adresse, String ville, String email, String mdp,String formation) {
+        super(nom,prenom,dateNaissance,telephone,adresse,ville,email,mdp,false);
         this.formation = formation;
     }
 

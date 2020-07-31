@@ -167,5 +167,31 @@ public class ConnexionBDD {
         }
     }
 
+    public void ajouterEleve(Eleve eleve){
+        ajouterUtilisateur(eleve);
+
+        Utilisateur uti = rechercherUtilisateur(eleve.getEmail());
+
+        String query = "INSERT INTO utilisateur (formation,,dateNaissance,telephone," +
+                "adresse,ville,email,mdp,estAdmin) VALUES (?,?,?,?,?,?,?,?,?);";
+        try {
+            PreparedStatement ps = maConnexion.prepareStatement(query);
+
+            ps.setString(1,uti.getNom());
+            ps.setString(2,uti.getPrenom());
+            ps.setString(3,uti.getDateNaissance());
+            ps.setString(4,uti.getTelephone());
+            ps.setString(5,uti.getAdresse());
+            ps.setString(6,uti.getVille());
+            ps.setString(7,uti.getEmail());
+            ps.setString(8,uti.chiffrerMDP(uti.getMdp()));
+            ps.setBoolean(9,uti.isEstAdmin());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
