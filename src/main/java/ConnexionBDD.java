@@ -1,4 +1,3 @@
-import javax.xml.transform.Result;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
@@ -45,7 +44,7 @@ public class ConnexionBDD {
             ps.setString(7,uti.getEmail());
             ps.setString(8,uti.chiffrerMDP(uti.getMdp()));
             ps.setBoolean(9,uti.isEstAdmin());
-
+            System.out.println("aaaa");
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,7 +80,7 @@ public class ConnexionBDD {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                Utilisateur uti = new Utilisateur(rs.getString("nom"),
+                Utilisateur uti = new Utilisateur(rs.getInt("id"),rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("dateNaissance"),
                         rs.getString("telephone"),
@@ -167,25 +166,38 @@ public class ConnexionBDD {
         }
     }
 
+    public ResultSet afficherElevesEtClasses(){
+        String query = "Select utilisateur.nom as nomEleve, utilisateur.prenom as prenomEleve" +
+                ", eleve.idClasse as idClasse, classe.nom as nomClasse from utilisateur" +
+                " inner join eleve on utilisateur.id = eleve.idUti inner join classe on classe.id = eleve.idClasse" +
+                " ORDER BY classe.id asc";
+
+        try {
+            PreparedStatement ps = maConnexion.prepareStatement(query);
+
+            return ps.executeQuery();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
     public void ajouterEleve(Eleve eleve){
         ajouterUtilisateur(eleve);
 
         Utilisateur uti = rechercherUtilisateur(eleve.getEmail());
 
-        String query = "INSERT INTO utilisateur (formation,,dateNaissance,telephone," +
-                "adresse,ville,email,mdp,estAdmin) VALUES (?,?,?,?,?,?,?,?,?);";
+        String query = "INSERT INTO eleve (formation,idClasse,idUti) VALUES (?,?,?);";
         try {
             PreparedStatement ps = maConnexion.prepareStatement(query);
 
-            ps.setString(1,uti.getNom());
-            ps.setString(2,uti.getPrenom());
-            ps.setString(3,uti.getDateNaissance());
-            ps.setString(4,uti.getTelephone());
-            ps.setString(5,uti.getAdresse());
-            ps.setString(6,uti.getVille());
-            ps.setString(7,uti.getEmail());
-            ps.setString(8,uti.chiffrerMDP(uti.getMdp()));
-            ps.setBoolean(9,uti.isEstAdmin());
+            ps.setString(1,eleve.getFormation());
+            ps.setInt(2,eleve.getIdClasse());
+            ps.setInt(3,uti.getId());
 
             ps.executeUpdate();
         } catch (SQLException e) {

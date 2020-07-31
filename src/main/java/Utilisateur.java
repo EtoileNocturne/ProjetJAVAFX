@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Utilisateur {
 
+    private int id;
     private String nom;
     private String prenom;
     private String dateNaissance;
@@ -16,6 +17,23 @@ public class Utilisateur {
     private boolean estAdmin;
 
     public Utilisateur(String nom, String prenom, String dateNaissance, String telephone, String adresse, String ville, String email, String mdp, boolean estAdmin) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.telephone = telephone;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.email = email;
+        this.mdp = mdp;
+        this.estAdmin = estAdmin;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Utilisateur(int id, String nom, String prenom, String dateNaissance, String telephone, String adresse, String ville, String email, String mdp, boolean estAdmin) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
