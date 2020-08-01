@@ -4,7 +4,9 @@ public class Classe {
 	private int id;
 	private String nom;
 	private int capacite;
-	 
+
+
+
 	public Classe(String nom, Integer capacite) {
 		this.nom = nom;
 		this.capacite = capacite;
@@ -12,6 +14,10 @@ public class Classe {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNom() {
